@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, async () => {
   await connectRedis();
   logger.info(`Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
-  logger.info(`Swagger docs available at https://zorvyn-backend-pjs1.onrender.com/api-docs`);
+  logger.info(`Swagger docs available at http://localhost:${PORT}/api-docs`);
 });
 
 // Handle unhandled promise rejections
