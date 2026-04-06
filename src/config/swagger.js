@@ -17,8 +17,8 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:5000',
-        description: 'Local development server'
+        url: 'https://zorvyn-backend-pjs1.onrender.com',
+        description: 'deployed server'
       }
     ],
 
@@ -325,4 +325,4 @@ const options = {
 
 const swaggerSpec = swaggerJsdoc(options);
 
-module.exports = swaggerSpec;
+module.exports = swaggerSpec;
