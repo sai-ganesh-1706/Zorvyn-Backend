@@ -32,4 +32,17 @@ const redisCache = (duration = 60) => async (req, res, next) => {
   }
 };
 
+redisCache.clearUserCache = async (userId) => {
+  try {
+    if (!client.isOpen) return;
+    const keys = await client.keys(`cache:${userId}:*`);
+    if (keys.length > 0) {
+      await client.del(keys);
+      logger.info(`Cleared ${keys.length} cache keys for user ${userId}`);
+    }
+  } catch (err) {
+    logger.error(`Cache clear error: ${err.message}`);
+  }
+};
+
 module.exports = redisCache;

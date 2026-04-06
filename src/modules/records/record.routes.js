@@ -102,7 +102,15 @@ const { createRecordSchema, updateRecordSchema, querySchema } = require('./recor
  *       500:
  *         $ref: '#/components/responses/InternalError'
  */
-router.get('/', auth, validateQuery(querySchema), controller.getAll);
+const redisCache = require('../../middleware/redisCache');
+
+router.get(
+  '/',
+  auth,
+  validateQuery(querySchema),
+  redisCache(60), 
+  controller.getAll
+);
 
 /**
  * @swagger

@@ -1,5 +1,6 @@
 const service = require('./record.service');
 const logger = require('../../utils/logger');
+const redisCache = require('../../middleware/redisCache');
 
 // ================= CREATE =================
 exports.create = async (req, res) => {
@@ -9,6 +10,7 @@ exports.create = async (req, res) => {
   try {
     const record = await service.createRecord(req.body, req.user);
     logger.info(`[RECORDS][CREATE] Success | recordId: ${record._id} | user: ${userInfo}`);
+    await redisCache.clearUserCache(req.user.id);
 
     return res.status(201).json({
       success: true,
@@ -50,6 +52,7 @@ exports.update = async (req, res) => {
   try {
     const record = await service.updateRecord(recordId, req.body, req.user);
     logger.info(`[RECORDS][UPDATE] Success | recordId: ${recordId} | user: ${userInfo}`);
+    await redisCache.clearUserCache(req.user.id);
 
     return res.json({
       success: true,
@@ -71,6 +74,7 @@ exports.delete = async (req, res) => {
   try {
     await service.deleteRecord(recordId, req.user);
     logger.info(`[RECORDS][DELETE] Success | recordId: ${recordId} | user: ${userInfo}`);
+    await redisCache.clearUserCache(req.user.id);
 
     return res.json({
       success: true,

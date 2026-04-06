@@ -128,7 +128,7 @@ router.get('/summary', auth, validateQuery(dashboardQuerySchema), redisCache(60)
  *       500:
  *         $ref: '#/components/responses/InternalError'
  */
-router.get('/categories', auth, validateQuery(dashboardQuerySchema), controller.getCategoryWise);
+router.get('/categories', auth, validateQuery(dashboardQuerySchema), redisCache(60), controller.getCategoryWise);
 
 /**
  * @swagger
@@ -182,7 +182,7 @@ router.get('/categories', auth, validateQuery(dashboardQuerySchema), controller.
  *       500:
  *         $ref: '#/components/responses/InternalError'
  */
-router.get('/trends', auth, validateQuery(dashboardQuerySchema), controller.getMonthlyTrends);
+router.get('/trends', auth, validateQuery(dashboardQuerySchema), redisCache(60), controller.getMonthlyTrends);
 
 /**
  * @swagger
@@ -241,7 +241,7 @@ router.get('/trends', auth, validateQuery(dashboardQuerySchema), controller.getM
  *       500:
  *         $ref: '#/components/responses/InternalError'
  */
-router.get('/top-expenses', auth, validateQuery(dashboardQuerySchema), controller.getTopExpenses);
+router.get('/top-expenses', auth, validateQuery(dashboardQuerySchema), redisCache(60), controller.getTopExpenses);
 
 /**
  * @swagger
@@ -304,6 +304,6 @@ router.get('/top-expenses', auth, validateQuery(dashboardQuerySchema), controlle
  *       500:
  *         $ref: '#/components/responses/InternalError'
  */
-router.get('/recent', auth, validateQuery(dashboardQuerySchema), controller.getRecentTransactions);
+router.get('/recent', auth, validateQuery(dashboardQuerySchema), redisCache(60), controller.getRecentTransactions);
 
 module.exports = router;
