@@ -1,0 +1,15 @@
+
+node_modules/
+
+
+logs/
+*.log
+combined.log
+error.log
+
+
+.env
+
+
+
+
