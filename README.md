@@ -65,7 +65,7 @@ npm start
 
 ### 4. Verify
 Access the live Swagger documentation to interact with the API endpoints:
-👉 **[http://localhost:5000/api-docs](http://localhost:5000/api-docs)**
+👉 **([http://zorvyn-backend-pjs1.onrender.com/api-docs](https://zorvyn-backend-pjs1.onrender.com/api-docs/))**
 
 ---
 
